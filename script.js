@@ -8,12 +8,14 @@ async function getPics(){
 
  let url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=10`
  let response = await fetch(url)
- let data = await response.json()
- let image = document.createElement("img")
+ let data = response.json()
  console.log(data)
- image.src = data[2].hdurl
- pictureList.appendChild(image)
+ return data
+//  image.src = data[2].hdurl
+//  pictureList.appendChild(image)
 }
 
-getPics()
+getPics().then((res)=>{
+    res.forEach((elm)=>console.log(elm.hdurl))
+})
 
