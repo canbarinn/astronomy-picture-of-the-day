@@ -17,7 +17,7 @@ function addHtmlElement(pic) {
   let html = `
   <button id="add-favorites type="submit"">Add to Favorites</button>
   <h1 class="header">${pic.title}</h1>
-        <img src=${pic.url} alt="Space image" class="image">
+        <img src=${pic.url} alt="Not Found 404" class="image">
         <h2 class="text-header">XYZ</h2>
         <text class="text">${pic.explanation}</text>
         <p class="foot-info"></p>

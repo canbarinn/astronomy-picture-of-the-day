@@ -23,12 +23,12 @@ async function addSpaceItems() {
     let li = document.createElement("li")
     li.id = i
     let html = `
-    <button class="fav-button" onclick="getItem(${i})">&#10023;</button>
     <img src=${url} alt="Space image" class="image">
     <p id="reference"><em>${copyright ? `Reference: ${copyright }, ` : ""} Date: ${date}</em><p/>
     <h1 class="header">${title}</h1>
     <text class="text">${explanation}</text>
     <p class="foot-info"></p>
+    <button class="fav-button" onclick="getItem(${i})">ADD TO FAVORITES</button>
     `
     li.innerHTML = html
     ul.appendChild(li)
