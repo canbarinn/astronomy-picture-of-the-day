@@ -22,7 +22,7 @@ async function addSpaceItems() {
   let ul = document.getElementById("space-list");
   await array.map((item) => {
     picArray.push(item);
-    let { title: title, url: url, explanation: explanation, copyright: copyright, date: date } = item;
+    let { title: title, url: url, hdurl:hdurl, explanation: explanation, copyright: copyright, date: date } = item;
     // console.log(title,url,explanation)
     let li = document.createElement("li");
     li.id = i;
@@ -38,7 +38,7 @@ async function addSpaceItems() {
       `;
     } else {
       html = `
-      <img src=${url} alt="Space image" class="image">
+      <a class="image-button" href="${hdurl}"><img src=${url} alt="Space image" class="image"></a>
       <p id="reference"><em>${copyright ? `Reference: ${copyright}, ` : ""} Date: ${date}</em><p/>
       <h1 class="header">${title}</h1>
       <text class="text">${explanation}</text>
