@@ -2,8 +2,6 @@
 
 let API_KEY = "5tQRcYjsycg4XlKGHpFSuQ3aUlmRikilmqLQz0bK";
 
-let picArray = [];
-
 async function getPics() {
   let url = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=10`;
   let response = await fetch(url);
@@ -11,14 +9,14 @@ async function getPics() {
   console.log(data);
   return data;
 }
+let picArray = [];
 
 async function addSpaceItems() {
   let loadingContainer = document.getElementById("loading-container");
   loadingContainer.style.display = "flex";
   let i = picArray.length;
   let array = await getPics();
-  loadingContainer.style.display = "none"
-
+  loadingContainer.style.display = "none";
 
   array.map((element) => {
     if (element.media_type !== "image") {
@@ -160,6 +158,4 @@ function deleteFromFavorites(index) {
   window.location.reload();
 }
 
-console.log(window)
-
-
+console.log(window);
