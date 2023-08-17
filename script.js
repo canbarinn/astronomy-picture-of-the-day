@@ -13,8 +13,13 @@ async function getPics() {
 }
 
 async function addSpaceItems() {
-  let i = 0;
+  let loadingContainer = document.getElementById("loading-container");
+  loadingContainer.style.display = "flex";
+  let i = picArray.length;
   let array = await getPics();
+  loadingContainer.style.display = "none"
+
+
   array.map((element) => {
     if (element.media_type !== "image") {
     }
@@ -22,7 +27,7 @@ async function addSpaceItems() {
   let ul = document.getElementById("space-list");
   await array.map((item) => {
     picArray.push(item);
-    let { title: title, url: url, hdurl:hdurl, explanation: explanation, copyright: copyright, date: date } = item;
+    let { title: title, url: url, hdurl: hdurl, explanation: explanation, copyright: copyright, date: date } = item;
     // console.log(title,url,explanation)
     let li = document.createElement("li");
     li.id = i;
@@ -38,7 +43,14 @@ async function addSpaceItems() {
       `;
     } else {
       html = `
-      <a class="image-button" href="${hdurl}"><img src=${url} alt="Space image" class="image"></a>
+      <div class="wrapper">
+      <div class="image">
+      <a class="image-button" target=”_blank” href="${hdurl}"><img src=${url} alt="Space image" class="image">
+      <div class="content">
+      <h1 class="symbol">&#128301;<h1/></a>
+      </div>
+      </div>
+      </div>
       <p id="reference"><em>${copyright ? `Reference: ${copyright}, ` : ""} Date: ${date}</em><p/>
       <h1 class="header">${title}</h1>
       <text class="text">${explanation}</text>
@@ -84,7 +96,6 @@ const getItem = function (id) {
     }, 2000);
   }
 };
-// WORKING
 function saveToLocalStorage(array) {
   let json = JSON.stringify(array);
   localStorage.setItem("favSpaceItems", json);
@@ -105,7 +116,7 @@ function showFavoriteItems() {
   let ul = document.getElementById("favorites-list");
 
   items.map((item) => {
-    let { title: title, url: url, explanation: explanation, copyright: copyright, date: date } = item;
+    let { title: title, url: url, hdurl: hdurl, explanation: explanation, copyright: copyright, date: date } = item;
     // console.log(title,url,explanation)
     let li = document.createElement("li");
     let html = "";
@@ -120,12 +131,19 @@ function showFavoriteItems() {
       `;
     } else {
       html = `
-    <img src=${url} alt="Space image" class="image">
-    <p id="reference"><em>${copyright ? `Reference: ${copyright}, ` : ""} Date: ${date}</em><p/>
-    <h1 class="header">${title}</h1>
-    <text class="text">${explanation}</text>
-    <p class="foot-info"></p>
-    <button type="submit" class="delete-fav foot-btn" onclick="deleteFromFavorites(${items.indexOf(item)})">REMOVE</button>
+      <div class="wrapper">
+      <div class="image">
+      <a class="image-button" href="${hdurl}" target=”_blank”><img src=${url} alt="Space image" class="image">
+      <div class="content">
+      <h1 class="symbol">&#128301;<h1/></a>
+      </div>
+      </div>
+      </div>
+      <p id="reference"><em>${copyright ? `Reference: ${copyright}, ` : ""} Date: ${date}</em><p/>
+      <h1 class="header">${title}</h1>
+      <text class="text">${explanation}</text>
+      <p class="foot-info"></p>
+      <button type="submit" class="delete-fav foot-btn" onclick="deleteFromFavorites(${items.indexOf(item)})">REMOVE</button>
     `;
     }
     li.innerHTML = html;
@@ -141,3 +159,7 @@ function deleteFromFavorites(index) {
   localStorage.setItem("favSpaceItems", json);
   window.location.reload();
 }
+
+console.log(window)
+
+

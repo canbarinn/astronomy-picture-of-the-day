@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div id="loading-container">  <img src="rocket.svg" id="loading-text"/>
+    </div>
     <header>
         <a href="./index.html">MAIN PAGE</a>
-       <a href="">&#8634;</a>
+       <a href="./index.html">&#8634;</a>
        <a href="./favorites.html">FAVORITES</a>
     </header>
 
@@ -17,12 +19,13 @@
         <ul id="space-list"></ul>
     </div>
 
-    <div class="added-message-container"hidden>
-        <h1 class="added-message" >ADDED!</h1>
+    <div class="added-message-container msg"hidden>
+        <h1 class="added-message" >Added to favorites!</h1>
     </div>
-    <div class="cannot-message-container"hidden>
-        <h1 class="cannot-message" >Already added.</h1>
+    <div class="cannot-message-container msg"hidden>
+        <h1 class="cannot-message" >Already in favorites!</h1>
     </div>
+
 
     <script src="script.js"></script>
 
